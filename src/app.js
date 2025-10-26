@@ -3,6 +3,7 @@ const express = require('express')
 const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/prediksiCuaca')
+const port = process.env.PORT || 3000 
 
 const app = express()
 
@@ -191,6 +192,6 @@ app.use((req, res) => {
 })
 
 // Menjalankan server pada port 3000
-app.listen(3000, () => {
-    console.log('Server berjalan pada port 3000')
+app.listen(port, () => {
+    console.log('Server berjalan pada port ' + port)
 })
