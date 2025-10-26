@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bantuan</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .help-hero { max-width:1100px; margin:28px auto; padding:22px; border-radius:12px }
+    </style>
+</head>
+<body>
+    {{> header}}
+
+    <main class="help-container">
+        <div class="help-hero">
+            <div class="help-hero">
+                <h1><i class="fas fa-question-circle"></i> Pusat Bantuan & FAQ</h1>
+                <p>Temukan jawaban untuk pertanyaan yang sering diajukan tentang aplikasi kami</p>
+            </div>
+
+            <div class="faq-section">
+                <div class="faq-categories">
+                    <button class="category-btn active" data-category="all">Semua Pertanyaan</button>
+                    <button class="category-btn" data-category="umum">Informasi Umum</button>
+                    <button class="category-btn" data-category="teknis">Teknis & API</button>
+                    <button class="category-btn" data-category="penggunaan">Cara Penggunaan</button>
+                </div>
+
+                <div class="faq-list">
+                    <!-- Pertanyaan Umum -->
+                    <div class="faq-item" data-category="umum">
+                        <div class="faq-question">
+                            <h3>Halaman ini digunakan untuk apa?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Halaman ini adalah <strong>Frequently Asked Questions (FAQ)</strong> atau Pertanyaan yang Sering Diajukan. Tujuan halaman ini adalah:</p>
+                            <ul>
+                                <li>Memberikan informasi lengkap tentang aplikasi cuaca</li>
+                                <li>Menjawab pertanyaan umum pengguna</li>
+                                <li>Menjelaskan teknologi yang digunakan</li>
+                                <li>Memberikan panduan penggunaan aplikasi</li>
+                                <li>Menampilkan informasi tentang API yang digunakan</li>
+                            </ul>
+                            <p>Dengan adanya halaman ini, pengguna dapat dengan mudah menemukan solusi untuk masalah yang mungkin dihadapi tanpa perlu menghubungi customer service.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="teknis">
+                        <div class="faq-question">
+                            <h3>Apa itu API?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>API (Application Programming Interface)</strong> adalah antarmuka yang memungkinkan dua sistem atau aplikasi berbeda untuk saling berkomunikasi dan bertukar data. Secara sederhana, API berfungsi sebagai jembatan penghubung antara client (seperti aplikasi di ponsel) dengan server yang menyediakan data atau layanan. Misalnya, saat seseorang menggunakan aplikasi Gojek untuk memesan makanan, aplikasi tersebut mengirimkan permintaan ke server restoran melalui API, dan server akan mengembalikan data seperti menu, harga, serta status pesanan. Dengan cara ini, pengguna tidak perlu berinteraksi langsung dengan server, karena API yang mengatur proses komunikasi tersebut. API juga mempermudah pengembang karena mereka dapat menggunakan fungsi yang sudah tersedia tanpa perlu membangun semuanya dari awal. Selain itu, API meningkatkan keamanan dengan hanya membuka akses pada data atau layanan tertentu. Dalam praktiknya, API banyak digunakan di berbagai bidang, seperti integrasi pembayaran online (misalnya Midtrans), penggunaan peta dari Google Maps, atau menampilkan data cuaca dari OpenWeather. Dengan demikian, API memiliki peran penting dalam mendukung integrasi dan efisiensi sistem dalam dunia pengembangan perangkat lunak modern.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="teknis">
+                        <div class="faq-question">
+                            <h3>API apa yang digunakan dalam aplikasi ini?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Aplikasi cuaca ini menggunakan <strong>WeatherAPI.com</strong> sebagai sumber data cuaca utama.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="teknis">
+                        <div class="faq-question">
+                            <h3>Jelaskan tentang arsitektur RESTful API</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Arsitektur RESTful API</strong> merupakan pendekatan populer dalam pengembangan layanan web modern karena kesederhanaan, fleksibilitas, dan kemampuannya untuk berintegrasi dengan berbagai platform. REST (Representational State Transfer) menggunakan protokol HTTP sebagai dasar komunikasi antara client dan server, dengan setiap sumber daya diidentifikasi melalui URL unik dan biasanya direpresentasikan dalam format JSON karena ringan dan mudah dibaca. Proses kerjanya dimulai ketika client mengirimkan HTTP request menggunakan metode standar seperti GET, POST, PUT, atau DELETE. Permintaan ini diterima server, diteruskan melalui router ke controller yang menjalankan logika bisnis, dan jika diperlukan, berkomunikasi dengan database untuk membaca atau memperbarui data. Hasilnya kemudian dikonversi ke JSON dan dikirim kembali ke client melalui HTTP response beserta status operasi. RESTful API bersifat stateless, sehingga setiap request diproses secara independen, membuatnya scalable dan mudah diimplementasikan di lingkungan microservices. REST juga mudah diintegrasikan dengan teknologi front-end modern seperti React, Vue.js, atau Flutter. Meski demikian, REST memiliki keterbatasan seperti over-fetching dan under-fetching, yang kemudian mendorong munculnya alternatif modern seperti GraphQL.</p>
+                            <div class="api-architecture" style="margin-top:12px">
+                                <img src="/img/RESTful.png" alt="Diagram Arsitektur RESTful API" style="max-width:480px; width:100%; height:auto; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06)">
+                                <p style="font-size:0.9rem; color:#555; margin-top:8px">Contoh sederhana arsitektur RESTful: client mengirim request ke server melalui endpoint, server memproses request dan berinteraksi dengan database, lalu mengembalikan respons dalam format JSON.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pertanyaan Penggunaan -->
+                    <div class="faq-item" data-category="penggunaan">
+                        <div class="faq-question">
+                            <h3>Bagaimana cara menggunakan aplikasi untuk mengecek cuaca?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Berikut langkah-langkah menggunakan aplikasi cuaca:</p>
+                            <ol>
+                                <li>Buka halaman utama aplikasi</li>
+                                <li>Masukkan nama kota atau lokasi pada kolom pencarian</li>
+                                <li>Klik tombol "Cari Lokasi" atau tekan Enter</li>
+                                <li>Tunggu beberapa detik hingga data cuaca ditampilkan</li>
+                                <li>Informasi cuaca akan muncul termasuk suhu, kondisi, kelembaban, dan kecepatan angin</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="penggunaan">
+                        <div class="faq-question">
+                            <h3>Apakah aplikasi ini gratis?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ya, aplikasi cuaca ini sepenuhnya <strong>gratis</strong> untuk digunakan. Tidak ada biaya berlangganan atau pembayaran tersembunyi. Kami berkomitmen untuk menyediakan akses informasi cuaca yang mudah dan gratis untuk semua pengguna.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h2><i class="fas fa-headset"></i> Butuh Bantuan Lebih Lanjut?</h2>
+                <p>Tim support kami siap membantu Anda 24/7</p>
+                <div class="support-options">
+                    <div class="support-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email Support</h4>
+                        <p>fadhliakbar3333@gmail.com</p>
+                        <span>Response dalam 1-2 jam</span>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-comments"></i>
+                        <h4>Live Chat</h4>
+                        <p>Tersedia 24/7</p>
+                        <span>Respon instan</span>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Documentation</h4>
+                        <p>Panduan lengkap</p>
+                        <span><a href="#">Download Guide</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // FAQ Accordion
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items
+                    document.querySelectorAll('.faq-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // FAQ Category Filter
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const category = btn.getAttribute('data-category');
+                    const faqItems = document.querySelectorAll('.faq-item');
+                    
+                    faqItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

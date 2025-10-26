@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{judul}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* small inline tweaks to make berita page look nicer quickly */
+        .news-container { max-width: 1100px; margin: 30px auto; padding: 0 16px; }
+        .news-hero { text-align: left; margin-bottom: 18px; }
+        .news-controls { display:flex; gap:12px; align-items:center; margin-bottom:12px; flex-wrap:wrap }
+        .search-box input { padding:8px 10px; border-radius:6px; border:1px solid #ddd }
+        .btn-refresh { background:#667eea; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer }
+        .news-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:18px }
+        .news-card { background:#fff; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06); overflow:hidden; display:flex; flex-direction:column }
+        .news-image img { width:100%; height:150px; object-fit:cover }
+        .news-content { padding:12px }
+        .news-meta { font-size:0.85rem; color:#666; margin-bottom:6px; display:flex; gap:8px; align-items:center }
+        .news-title { margin:6px 0; font-size:1.05rem }
+        .news-actions { margin-top:10px; display:flex; gap:10px; align-items:center }
+        .news-link { color:#3273dc; text-decoration:none; font-weight:600 }
+    </style>
+</head>
+<body>
+    {{> header}}
+
+    <main class="news-container">
+        <section class="news-hero">
+            <h1><i class="fas fa-newspaper"></i> {{judul}}</h1>
+        </section>
+
+        <section class="news-controls">
+            <div class="search-box">
+                <input type="text" id="newsSearch" placeholder="Cari berita...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <button id="refreshNews" class="btn-refresh"><i class="fas fa-sync-alt"></i> Refresh</button>
+        </section>
+
+        <div id="loadingSpinner" class="loading-spinner" style="display:none; text-align:center; padding:20px"><i class="fas fa-spinner fa-spin"></i> Memuat...</div>
+
+        <div id="newsGrid" class="news-grid">
+            <!-- Berita akan di-render oleh JavaScript menggunakan window.SERVER_NEWS (data dari Mediastack).
+                 Server-side tidak lagi merender daftar berita statis/fallback di sini. -->
+        </div>
+
+    </main>
+
+    {{> footer}}
+
+    <script>
+        // Dapatkan data berita dari server jika tersedia
+        window.SERVER_NEWS = [];
+        try {
+            window.SERVER_NEWS = {{{toJSON berita}}} || [];
+        } catch (e) {
+            window.SERVER_NEWS = [];
+        }
+
+        // Elemen
+        const newsGrid = document.getElementById('newsGrid');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const newsSearch = document.getElementById('newsSearch');
+        const searchBtn = document.getElementById('searchBtn');
+        const refreshBtn = document.getElementById('refreshNews');
+
+        let currentNews = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupEventListeners();
+
+            if (window.SERVER_NEWS && window.SERVER_NEWS.length > 0) {
+                currentNews = window.SERVER_NEWS;
+                displayNews(currentNews);
+            }
+        });
+
+        function setupEventListeners() {
+            searchBtn && searchBtn.addEventListener('click', handleSearch);
+            newsSearch && newsSearch.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSearch(); });
+            refreshBtn && refreshBtn.addEventListener('click', () => {
+                // Jika ada data server, simulasikan refresh menggunakan server data
+                if (window.SERVER_NEWS && window.SERVER_NEWS.length>0) {
+                    currentNews = window.SERVER_NEWS;
+                    displayNews(currentNews);
+                }
+            });
+        }
+
+        function handleSearch() {
+            const term = (newsSearch && newsSearch.value || '').toLowerCase().trim();
+            let results = currentNews.slice();
+            if (term) {
+                results = results.filter(n => (n.title||'').toLowerCase().includes(term) || (n.description||'').toLowerCase().includes(term));
+            }
+            displayNews(results);
+        }
+
+        function displayNews(arr) {
+            if (!arr || arr.length === 0) {
+                newsGrid.innerHTML = `<div class="no-news" style="text-align:center;padding:40px">Tidak ada berita</div>`;
+                return;
+            }
+            newsGrid.innerHTML = arr.map(n => `
+                <article class="news-card">
+                    <div class="news-image"><img src="${n.image || '/img/news-placeholder.png'}" alt="${escapeHtml(n.title)}"></div>
+                    <div class="news-content">
+                        <div class="news-meta"><span class="news-source">${escapeHtml(n.source || '')}</span> <span class="news-date">${formatDate(n.published_at)}</span></div>
+                        <h3 class="news-title">${escapeHtml(n.title)}</h3>
+                        <p class="news-description">${escapeHtml(n.description || '')}</p>
+                        <div class="news-actions"><a class="news-link" href="${n.url || '#'}" target="_blank">Baca Selengkapnya</a></div>
+                    </div>
+                </article>
+            `).join('')
+        }
+
+        function formatDate(d) {
+            try { return new Date(d).toLocaleString('id-ID'); } catch(e) { return d }
+        }
+
+        function escapeHtml(s){ return String(s||'').replace(/[&<>\"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c] }) }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tentang Saya</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    {{> header}}
+
+    <main class="about-container">
+            <div class="about-hero">
+                <div class="hero-content">
+                    <h1>Tentang Aplikasi & Pengembang</h1>
+                    <p>Mengenal lebih dekat aplikasi cuaca cerdas dan developer di baliknya</p>
+                </div>
+            </div>
+
+            <!-- Tentang Aplikasi -->
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-image">
+                        <img class="portrait" src="/img/curl.png" alt="Aplikasi Cuaca">
+                    </div>
+                    <div class="about-info">
+                        <h2><i class="fas fa-cloud-sun"></i> Tentang Aplikasi Cuaca</h2>
+                        <p>Aplikasi Cuaca adalah platform inovatif yang menyediakan informasi cuaca real-time dengan akurasi tinggi. Dibangun dengan teknologi terdepan untuk memastikan pengalaman pengguna yang optimal dalam memantau kondisi cuaca di seluruh dunia.</p>
+                        
+                        <div class="tech-stack">
+                            <h4>Teknologi yang Digunakan:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">Handlebars</span>
+                                <span class="tech-tag">Weather API</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript ES6+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV Developer -->
+                <div class="cv-section">
+                    <h2><i class="fas fa-user-tie"></i> Profil Developer</h2>
+                    <div class="cv-table-wrap">
+                        <div class="cv-photo">
+                            <!-- Ganti /img/developer.jpg dengan file foto developer yang sesungguhnya -->
+                            <img src="/img/foto1.jpg" alt="Foto Developer" class="dev-photo">
+                        </div>
+
+                        <div class="cv-table-container">
+                            <table class="cv-table">
+                                <tr>
+                                    <th>Nama</th>
+                                    <td>Fadhli Akbar Sahendra</td>
+                                </tr>
+                                <tr>
+                                    <th>NIM</th>
+                                    <td>23343036</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>fadhliakbar3333@email.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Telepon</th>
+                                    <td>+62 813-6557-2913</td>
+                                </tr>
+                                <tr>
+                                    <th>Lokasi</th>
+                                    <td>Padang, Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <th>Pendidikan</th>
+                                    <td>SD Negeri 24 Padang (2017)<br>SMP Negeri 8 Padang (2020)<br>SMA Negeri 4 Padang (2023)<br>Teknik Informatika, Universitas Negeri Padang (Sekarang)</td>
+                                </tr>
+                            </table>
+
+                            <div class="cv-social">
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Misi & Visi -->
+                <div class="mission-vision">
+                    <div class="mission">
+                        <h3><i class="fas fa-bullseye"></i> Misi</h3>
+                        <p>Menyediakan informasi cuaca yang akurat, mudah diakses, dan real-time untuk membantu masyarakat dalam perencanaan aktivitas sehari-hari dengan lebih efektif dan efisien.</p>
+                    </div>
+                    <div class="vision">
+                        <h3><i class="fas fa-eye"></i> Visi</h3>
+                        <p>Menjadi platform informasi cuaca terdepan di Indonesia dengan teknologi terkini dan pengalaman pengguna yang optimal, mendukung pengambilan keputusan berbasis data cuaca.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
+</body>
+</html>
